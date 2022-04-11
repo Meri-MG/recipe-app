@@ -40,13 +40,13 @@
 Please run the following commands `rails db:create` `rails db:migrate` `rails s`
 
 ## Tests
-```cmd
+```
 bundle exec rspec
 ```
 Or
-```mdx
+```
 rspec spec
-
+```
 ### To track linter errors locally follow these steps:  
 
 Track linter errors run:
