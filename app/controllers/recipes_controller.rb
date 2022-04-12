@@ -17,15 +17,17 @@ class RecipesController < ApplicationController
     recipe = current_user.recipes.new(recipe_params)
     if recipe.save
       flash[:notice] = 'Recipe was created successfully.'
-      redirect_to
+      redirect_to recipes_path
     else
       render 'new', status: :unprocessable_entity
     end
   end
 
   def destroy
-    recipe = Recipe.find(params[:recipe_id])
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
     flash[:notice] = 'Recipe was deleted successfully.'
+    redirect_to recipes_path
   end
 
   private
