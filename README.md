@@ -56,12 +56,13 @@ rubocop
 
 ## Authors
 
-  :woman: **Meri Gogichashvili**
+:woman: **Meri Gogichashvili**
 
 - [GitHub](https://github.com/Meri-MG)
 - [LinkedIn](https://www.linkedin.com/in/meri-gogichashvili/)
 
-  :man: **Amadu Kamara (Amkam)**
+
+:man: **Amadu Kamara (Amkam)**
 
 - [GitHub](https://github.com/AmaduKamara)
 - [LinkedIn](https://www.linkedin.com/in/amadu-kamara-3b60a25b)
