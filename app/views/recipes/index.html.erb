@@ -1,0 +1,11 @@
+<% @recipes.each do |recipe| %>
+  <div>
+    <p>Recipe #
+      <%= recipe.id %></p>
+    <p><%= recipe.user.name %></p>
+    <p><%= recipe.name %></p>
+    <p><%= recipe.description %></p>
+    <p><%= link_to 'Show', recipe_path(recipe) %></p>
+    <p><%= button_to 'Delete', recipe_path(recipe), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this recipe?" }} %></p>
+  </div>
+<% end %>

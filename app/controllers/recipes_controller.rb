@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
+    # @user = User.find(params[:user_id])
+    @recipes = Recipe.all
   end
 
   def new
@@ -9,7 +10,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @user = @recipe.author
+    @user = @recipe.user
   end
 
   def create
