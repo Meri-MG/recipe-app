@@ -1,0 +1,5 @@
+<%= form_with model: @new_inventory, url: '/inventories' do |form| %>
+  <%= form.text_field :name, placeholder: 'Name of the inventory' %>
+  <br>
+  <%= form.submit %>
+<% end %>
