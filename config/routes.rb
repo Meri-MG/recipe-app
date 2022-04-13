@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get 'inventories/index'
-  get 'inventories/show'
+  get '/inventories', to: 'inventories#index'
+  get '/inventories/new', to: 'inventories#new'
+  post '/inventories', to: 'inventories#create'
+  get '/inventories/:id', to: 'inventories#show'
+  delete '/inventories/:id', to: 'inventories#destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
