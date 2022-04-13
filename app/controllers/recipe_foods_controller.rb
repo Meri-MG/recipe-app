@@ -2,7 +2,7 @@ class RecipeFoodsController < ApplicationController
   def index
     @recipe_foods = RecipeFood.all
   end
-  
+
   def new
     @foods = current_user.foods
   end

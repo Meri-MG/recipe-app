@@ -1,0 +1,15 @@
+<div>
+  <%=form_with url: recipe_recipe_foods_path, scope: :recipe_food do |f| %>
+    <div>
+      <%= f.label :foodid, 'Select an ingredient' %>
+        <%= f.select :food_id, @foods.collect { |food| [food.name, food.id] }, :prompt => 'Select an Ingredient', required: true %>
+    </div>
+    <div>
+      <%= f.label :quantity, 'Quantity'  %>
+      <%= f.number_field :quantity, step: :any, required: true %>
+    </div>
+    <div>
+      <%= f.submit "Add Ingredient"%>
+    </div> 
+  <% end %>
+</div>
