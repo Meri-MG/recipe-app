@@ -19,8 +19,6 @@ class InventoriesController < ApplicationController
 
   def create
     inventory = Inventory.new(user: current_user, name: params[:inventory][:name])
-    puts "params = #{params}"
-    puts "inventory = #{inventory}"
     respond_to do |format|
       if inventory.save
         flash[:notice] = 'Created an inventory succesfully'
