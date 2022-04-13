@@ -11,6 +11,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <%= render "layouts/navbar" %>
+    </header>
+    <main class="container mx-auto py-5">
+      <%= yield %>
+    </main>
   </body>
 </html>
