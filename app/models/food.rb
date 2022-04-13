@@ -6,6 +6,7 @@ class Food < ApplicationRecord
   has_many :inventories, through: :inventory_foods, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 3, maximum: 100 }
-  validates :measurement_unit, presence: true, inclusion: { in: %w(grams units), message: "%{value} is not a measurement unit" } 
+  validates :measurement_unit, presence: true,
+                               inclusion: { in: %w[grams units], message: '%<value>s is not a measurement unit' }
   validates :price, presence: true, comparison: { greater_than: 0 }
 end

@@ -8,5 +8,4 @@ class Recipe < ApplicationRecord
   validates :cooking_time, presence: true, comparison: { greater_than: 0 }
   validates :description, presence: true, length: { minimum: 3, maximum: 300 }
   validates :public, presence: true
-
 end
