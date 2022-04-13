@@ -1,2 +1,13 @@
-<h1>Inventories#index</h1>
-<p>Find me in app/views/inventories/index.html.erb</p>
+<%= button_to 'CREATE', '/inventories/new', method: :get %>
+<ul style="display: flex; flex-direction: column; gap: 3rem; list-style-type: none">
+  <% @inventories.each do |inventory| %>
+    <li style="display: flex; gap: 5rem; border: 1px solid black">
+      <p>
+        <a href="<%= '/inventories/' + inventory.id.to_s %>">
+          <%= inventory.name %>
+        </a>
+      </p>
+      <%= button_to 'REMOOVE', '/inventories/' + inventory.id.to_s, method: :delete %>
+    </li>
+  <% end %>
+</ul>
