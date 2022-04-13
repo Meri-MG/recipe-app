@@ -3,7 +3,7 @@ class FoodsController < ApplicationController
     # @user = User.find(params[:user_id])
     @foods = Food.all
   end
-  
+
   def show
     @food = Food.find(params[:id])
     @user = @food.user
