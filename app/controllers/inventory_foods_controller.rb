@@ -24,6 +24,8 @@ class InventoryFoodsController < ApplicationController
     redirect_to "/inventories/#{inventory.id}"
   end
 
+  private
+
   def inventory_food_params
     params.require(:inventory_food).permit(:inventory_id, :food_id, :quantity)
   end
