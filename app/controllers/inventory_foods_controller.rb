@@ -2,7 +2,7 @@ class InventoryFoodsController < ApplicationController
   def new
     @new_inventory_food = InventoryFood.new
   end
-  
+
   def create
     inventory_food = InventoryFood.new(inventory_food_params)
     respond_to do |format|
