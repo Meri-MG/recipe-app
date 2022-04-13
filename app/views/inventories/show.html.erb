@@ -1,2 +1,22 @@
-<h1>Inventories#show</h1>
-<p>Displaying inventory #<%= params[:id] %></p>
+<h1><%= @inventory.name %></h1>
+<%= button_to 'ADD FOOD', "/inventories/#{params[:id]}/inventory_foods/new", method: :get %>
+<table>
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @inventory_foods.each do |inventory_food| %>
+    <tr>
+      <td><%= inventory_food.food.name %></td>
+      <td><%= "#{inventory_food.quantity} #{inventory_food.food.measurement_unit}" %></td>
+      <td>
+        <%= button_to 'REMOVE', '/inventory_foods/' + inventory_food.id.to_s, method: :delete %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
