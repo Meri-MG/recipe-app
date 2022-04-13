@@ -20,12 +20,12 @@
 
   <p> 
     <%= f.label :preparation_time %><br />
-    <%= f.text_area :preparation_time %>
+    <%= f.number_field :preparation_time, step: :any %>
   </p>
 
   <p> 
     <%= f.label :cooking_time %><br />
-    <%= f.text_area :cooking_time %>
+    <%= f.number_field :cooking_time %>
   </p>
 
   <p>
