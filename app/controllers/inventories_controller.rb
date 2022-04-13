@@ -3,14 +3,13 @@ class InventoriesController < ApplicationController
     @inventories = current_user.inventories
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     current_user.inventories.find(params[:id]).destroy
     flash[:notice] = 'Inventory was successfully removed'
     splitted_path = request.path.split('/')
-    splitted_path.pop 
+    splitted_path.pop
     redirect_to splitted_path.join('/')
   end
 
