@@ -1,0 +1,31 @@
+<h1>Add new food</h1>
+
+<% if @food.errors.any? %>
+  <h2>The following errors prevented the food from being submitted</h2>
+  <ul>
+    <% @food.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @food, local: true) do |f| %>
+  <p> 
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p> 
+    <%= f.label :measurement_unit %><br />
+    <%= f.text_field :measurement_unit %>
+  </p>
+
+  <p> 
+    <%= f.label :price %><br />
+     <%= f.text_field :price %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
