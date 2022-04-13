@@ -1,13 +1,15 @@
-<h1>Food List</h1>
-
-<% @foods.each do |food| %>
-  <div>
-    <p>food # <%= food.id %></p>
-    <p><%= food.user.name %></p>
-    <p><%= food.name %></p>
-    <p><%= food.measurement_unit %></p>
-    <p><%= food.price %></p>
-    <p><%= link_to 'Show', food_path(food) %></p>
-    <p><%= button_to 'Delete', food_path(food), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this recipe?" }} %></p>
-  </div>
-<% end %>
+<div>
+  <h1>Food List</h1>
+  <%= link_to 'Add Food', new_food_path %>
+  <% @foods.each do |food| %>
+    <div>
+      <p>food # <%= food.id %></p>
+      <p><%= food.user.name %></p>
+      <p><%= food.name %></p>
+      <p><%= food.measurement_unit %></p>
+      <p><%= food.price %></p>
+      <p><%= link_to 'Show', food_path(food) %></p>
+      <p><%= button_to 'Delete', food_path(food), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this recipe?" }} %></p>
+    </div>
+  <% end %>
+</div>
