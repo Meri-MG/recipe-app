@@ -69,6 +69,13 @@ rubocop
 - [Twitter](https://twitter.com/DevAmkam)
 - [Facebook](https://www.facebook.com/amadus.kamara.7)
 
+
+:man: **Bohdan Shcherbak**
+
+- [GitHub](https://github.com/akucintavalent)
+- [Twitter](https://twitter.com/ibodi828)
+- [LinkedIn](https://www.linkedin.com/in/bohdan-shcherbak/)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
