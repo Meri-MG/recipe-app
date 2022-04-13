@@ -9,3 +9,24 @@
   <p><%= @recipe.public %></p>
   <p><%= @recipe.name %></p>
 </div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @recipe_foods.each do |recipe_food| %>
+      <tr>
+      <td><%= recipe_food.food.name %></td>
+        <td><%= recipe_food.quantity %></td>
+        <td><%= recipe_food.food.price %></td>
+        <td><%= button_to 'Delete', recipe_recipe_food_path(@recipe.id, recipe_food.id), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this ingredient?" }} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
