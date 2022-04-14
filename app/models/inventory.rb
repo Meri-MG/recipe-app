@@ -10,12 +10,13 @@ class Inventory < ApplicationRecord
     recipe.recipe_foods.each do |recipe_food|
       food = recipe_food.food
       inventory_food = inventory_foods.where(food_id: food.id)[0]
-      if !inventory_food
-        shopping_list << [food.name, "#{recipe_food.quantity} #{food.measurement_unit}", recipe_food.quantity * food.price]
+      unless inventory_food
+        shopping_list << [food.name, "#{recipe_food.quantity} #{food.measurement_unit}",
+                          recipe_food.quantity * food.price]
         next
       end
       quantity_needed = recipe_food.quantity - inventory_food.quantity
-      quantity_needed = 0 if quantity_needed < 0
+      quantity_needed = 0 if quantity_needed.negative?
       if inventory_food && quantity_needed != 0
         shopping_list << [food.name, "#{quantity_needed} #{food.measurement_unit}", quantity_needed * food.price]
       end
