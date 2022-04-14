@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  background-color: #f2f2f2 !important;
+}
+
+.home {
+  width: 100%;
+  height: 100vh;
+  background-image: url("./recipe-homepage-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.recipe-image {
+  width: 250px !important;
+}

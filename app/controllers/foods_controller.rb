@@ -21,7 +21,7 @@ class FoodsController < ApplicationController
       redirect_to foods_path(foods_path)
     else
       flash[:notice] = 'Food creation failed. Try again'
-      format.html { render :new }
+      redirect_to new_food_path
     end
   end
 
