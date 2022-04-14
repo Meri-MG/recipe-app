@@ -1,15 +1,29 @@
-<div>
-  <h1>Food List</h1>
-  <%= link_to 'Add Food', new_food_path %>
-  <% @foods.each do |food| %>
-    <div>
-      <p>food # <%= food.id %></p>
-      <p><%= food.user.name %></p>
-      <p><%= food.name %></p>
-      <p><%= food.measurement_unit %></p>
-      <p><%= food.price %></p>
-      <p><%= link_to 'Show', food_path(food) %></p>
-      <p><%= button_to 'Delete', food_path(food), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this recipe?" }} %></p>
+<div class="flex justify-center my-12">
+  <div class="w-4/5">
+    <h1 class="text-2xl font-bold border-b-2">Food List</h1>
+    <div class="flex justify-end mt-4">
+      <%= link_to 'Add Food', new_food_path, class: "py-3 px-10 bg-orange-500 mb-5 text-white hover:bg-orange-700" %>
     </div>
-  <% end %>
+    <table  class="min-w-full table-auto border">
+      <thead class="bg-gray-400 text-white">
+        <tr>
+          <th class="py-5 text-left px-5 font-semibold">Food</th>
+          <th class="py-5 text-left px-5 font-semibold">Measurement unit</th>
+          <th class="py-5 text-left px-5 font-semibold">Unit price</th>
+          <th class="py-5 text-left pr-5 font-semibold" colspan="3">Action</th>
+        </tr>
+      </thead>
+        <tbody>
+          <% @foods.each do |food| %>
+            <tr class="hover:bg-gray-200 border">
+              <td class="right py-3 px-5"><%= food.name %></td>
+              <td class="right py-3 px-5"><%= food.measurement_unit %> grams</td>
+              <td class="right py-3 px-5"><%= food.price %></td>
+              <td><%= link_to 'Show', food_path(food), class: 'text-green-500' %></td>
+              <td><%= button_to 'Delete', food_path(food), class: 'text-red-400', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this recipe?" }} %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+    </div>
 </div>
