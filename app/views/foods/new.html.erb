@@ -1,33 +1,42 @@
-<h1>Add new food</h1>
 
-<% if @food.errors.any? %>
-  <h2>The following errors prevented the food from being submitted</h2>
-  <ul>
-    <% @food.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+<div class="flex justify-center my-12">
+  <div class="w-3/5 bg-white shadow-lg pb-10 px-10 pt-5">
+    <div class="flex justify-start my-4">
+      <%= link_to '< Foods', foods_path, class: 'text-gray-500' %>
+    </div>
+
+    <h1 class="text-2xl font-bold border-b-2">Add new food</h1>
+
+    <% if @food.errors.any? %>
+      <h2>The following errors prevented the food from being submitted</h2>
+      <ul>
+        <% @food.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
-<%= link_to 'Foods', foods_path %>
-<div>
-  <%= form_with(model: @food, local: true) do |f| %>
-    <p> 
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
-    </p>
+    
+    <div>
+      <%= form_with(model: @food, local: true) do |f| %>
+        <p class="mb-3 mt-5"> 
+          <%= f.label :name, class: 'font-semibold pb-1' %><br />
+          <%= f.text_field :name, class: 'py-2 px-4 border w-full focus:outline-orange-400', placeholder: 'Food name'%>
+        </p>
 
-    <p> 
-      <%= f.label :measurement_unit %><br />
-      <%= f.text_field :measurement_unit %>
-    </p>
+        <p class="mb-3"> 
+          <%= f.label :measurement_unit, class: 'font-semibold pb-1' %><br />
+          <%= f.text_field :measurement_unit, class: 'py-2 px-4 border w-full focus:outline-orange-400', placeholder: 'Unit'%>
+        </p>
 
-    <p> 
-      <%= f.label :price %><br />
-      <%= f.text_field :price %>
-    </p>
+        <p class="mb-3"> 
+          <%= f.label :price, class: 'font-semibold pb-1' %><br />
+          <%= f.text_field :price, class: 'py-2 px-4 border w-full focus:outline-orange-400', placeholder: '$ 0.00'%>
+        </p>
 
-    <p>
-      <%= f.submit %>
-    </p>
-  <% end %>
+        <p>
+          <%= f.submit class: 'bg-orange-500 py-3 px-10 text-white hover:bg-orange-700 cursor-pointer' %>
+        </p>
+      <% end %>
+    </div>
+  </div>
 </div>
