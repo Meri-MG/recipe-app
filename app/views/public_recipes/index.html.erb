@@ -1,0 +1,24 @@
+<% if @public_recipes.empty? %>
+  <div>
+    <h1>We're sorry, no recipies are available for now!<h1>
+  </div>
+<% else %>
+  <div>
+    <% @public_recipes.each do |public_recipe| %>
+      <% sum = 0 %>
+      <%= link_to recipe_path(public_recipe.id) do %>
+        <div>
+          <div>
+            <h1><%= public_recipe.name %></h1>
+            <h2><%= "By: #{public_recipe.user.name}" %></h2>
+          </div>
+          <div>
+              <p><%= "Total food items: #{public_recipe.recipe_foods.count}" %></p>
+              <% public_recipe.recipe_foods.each {|food| sum += food.quantity * food.food.price} %>
+              <p><%= "Total Price $#{sum}" %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
