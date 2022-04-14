@@ -1,0 +1,34 @@
+<% if @recipe.errors.any? %>
+  <h2>The following errors prevented the recipe from being saved</h2>
+  <ul>
+    <% @recipe.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @recipe, local: true) do |f| %>
+  <p> 
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p> 
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+
+  <p> 
+    <%= f.label :preparation_time %><br />
+    <%= f.number_field :preparation_time, step: :any %>
+  </p>
+
+  <p> 
+    <%= f.label :cooking_time %><br />
+    <%= f.number_field :cooking_time, step: :any %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+  <% end %>
