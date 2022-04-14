@@ -33,7 +33,8 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find_by(id: params[:id])
-    @recipe.update_attribute(:public, false)
+    public = params[:public] == '1'
+    @recipe.update_attribute(:public, public)
   end
 
   private

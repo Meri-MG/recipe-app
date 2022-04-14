@@ -12,14 +12,9 @@
 <div>
   <h4 class="form-check-label">Public</h4>
   <%= form_with url: recipe_path(@recipe.id), method: "put" do |form| %>
-      <div>
-        <% if @recipe.public %>
-          <%= form.check_box :public, id: "flexSwitchCheckDefault", onchange: "this.form.submit();" %>
-          <%= form.label :public, for: "flexSwitchCheckDefault" %>
-        <% else %>
-          <%= form.check_box :public, id: "flexSwitchCheckChecked", onchange: "this.form.submit();" %>
-          <%= form.label :public, for: "flexSwitchCheckChecked" %>
-        <% end %>
+    <div>
+      <%= form.check_box :public, id: "flexSwitchCheckChecked" , onchange: "this.form.submit();", checked: @recipe.public %>
+      <%= form.label :public, for: "flexSwitchCheckChecked" %>
     </div>
   <% end %>
 <div>
@@ -39,8 +34,8 @@
     <% @recipe_foods.each do |recipe_food| %>
       <tr>
         <td><%= recipe_food.food.name %></td>
-        <td><%= recipe_food.quantity %></td>
-        <td><%= recipe_food.food.price %></td>
+        <td><%= "#{recipe_food.quantity} #{recipe_food.food.measurement_unit}" %></td>
+        <td><%= "$#{recipe_food.food.price}" %></td>
         <td><%= button_to 'Delete', recipe_recipe_food_path(@recipe.id, recipe_food.id), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this ingredient?" }} %></td>
       </tr>
     <% end %>
