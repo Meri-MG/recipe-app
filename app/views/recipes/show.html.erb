@@ -35,7 +35,7 @@
       <tr>
         <td><%= recipe_food.food.name %></td>
         <td><%= "#{recipe_food.quantity} #{recipe_food.food.measurement_unit}" %></td>
-        <td><%= "$#{recipe_food.food.price}" %></td>
+        <td><%= "$#{recipe_food.quantity * recipe_food.food.price}" %></td>
         <td><%= button_to 'Delete', recipe_recipe_food_path(@recipe.id, recipe_food.id), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this ingredient?" }} %></td>
       </tr>
     <% end %>
