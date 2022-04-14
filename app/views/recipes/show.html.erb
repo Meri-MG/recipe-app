@@ -6,9 +6,23 @@
   <p><%= @recipe.preparation_time %></p>
   <p><%= @recipe.cooking_time %></p>
   <p><%= @recipe.description %></p>
-  <p><%= @recipe.public %></p>
   <p><%= @recipe.name %></p>
 </div>
+
+<div>
+  <h4 class="form-check-label">Public</h4>
+  <%= form_with url: recipe_path(@recipe.id), method: "put" do |form| %>
+      <div>
+        <% if @recipe.public %>
+          <%= form.check_box :public, id: "flexSwitchCheckDefault", onchange: "this.form.submit();" %>
+          <%= form.label :public, for: "flexSwitchCheckDefault" %>
+        <% else %>
+          <%= form.check_box :public, id: "flexSwitchCheckChecked", onchange: "this.form.submit();" %>
+          <%= form.label :public, for: "flexSwitchCheckChecked" %>
+        <% end %>
+    </div>
+  <% end %>
+<div>
 
 <%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id)%>
 
