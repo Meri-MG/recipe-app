@@ -9,7 +9,9 @@ RSpec.describe "Foods", type: :request do
     end
 
     it "GET /foods/:id" do
-      get('/foods/1')
+      user = User.create!(name: 'Meri')
+      food = user.foods.create!(name: 'Apple', measurement_unit: 'grams', price: 321)
+      get('/foods/' + food.id.to_s)
       expect(response).to render_template('show')
       expect(response).to have_http_status(:ok)
     end
@@ -18,6 +20,17 @@ RSpec.describe "Foods", type: :request do
       get('/foods/new')
       expect(response).to render_template('new')
       expect(response).to have_http_status(:ok)
+    end
+
+    it "DELETE /foods/:id" do
+      user = User.create!(name: 'Meri')
+      food = user.foods.create!(name: 'Apple', measurement_unit: 'grams', price: 321)
+      delete('/foods/' + food.id.to_s)
+      expect {
+        get('/foods/' + food.id.to_s)
+      }.to raise_error(ActiveRecord::RecordNotFound)
+      expect(response).to_not render_template('show')
+      expect(response).to_not have_http_status(:ok)
     end
   end
 end
