@@ -1,22 +1,28 @@
-<h1><%= @inventory.name %></h1>
-<%= button_to 'ADD FOOD', "/inventories/#{params[:id]}/inventory_foods/new", method: :get %>
-<table>
-  <thead>
-    <tr>
-      <th>Food</th>
-      <th>Quantity</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @inventory_foods.each do |inventory_food| %>
-    <tr>
-      <td><%= inventory_food.food.name %></td>
-      <td><%= "#{inventory_food.quantity} #{inventory_food.food.measurement_unit}" %></td>
-      <td>
-        <%= button_to 'REMOVE', '/inventory_foods/' + inventory_food.id.to_s, method: :delete %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="flex justify-center my-12 container mx-auto">
+  <div class="w-3/5 bg-white shadow-lg p-10">
+    <h1 class="text-2xl font-semibold text-center"><%= @inventory.name %></h1>
+    
+    <div class="flex justify-end mt-3">
+      <%= button_to 'Add food', "/inventories/#{params[:id]}/inventory_foods/new", method: :get, class: 'py-3 px-6 bg-orange-500 mb-3 text-white hover:bg-orange-700' %>
+    </div>
+    
+    <table  class="min-w-full table-auto border bg-white mt-2">
+      <thead class="bg-gray-400 text-white">
+        <tr>
+          <th class="py-3 text-left px-5 font-semibold">Food</th>
+          <th class="py-3 text-left px-5 font-semibold">Quantity</th>
+          <th class="py-3 text-left pr-5 font-semibold" colspan="3">Actions</th>
+        </tr>
+      </thead>
+        <tbody>
+            <% @inventory_foods.each do |inventory_food| %>
+            <tr class="hover:bg-gray-200 border">
+              <td class="right py-3 px-5"><%= inventory_food.food.name %></td>
+              <td class="right py-3 px-5"><%= "#{inventory_food.quantity} #{inventory_food.food.measurement_unit}" %></td>
+              <td><%= button_to 'REMOVE', '/inventory_foods/' + inventory_food.id.to_s, method: :delete %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+   </div>
+</div>
