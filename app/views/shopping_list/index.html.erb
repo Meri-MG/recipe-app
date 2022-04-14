@@ -1,0 +1,25 @@
+<div>
+  <h2>Shopping List</h2>
+  <p>Amount of food to buy: <%= @shopping_list.length %></p>
+  <p>Total value of food needed: $<%= @shopping_list.inject(0) { |sum,item| sum + item[2] } %></p>
+  <p>Recipe: <a href="<%= "/recipes/#{@recipe.id}" %>"><%= @recipe.name %></a></p>
+  <p>Inventory: <a href="<%= "/inventories/#{@inventory.id}" %>"><%= @inventory.name %></a></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shopping_list.each do |shopping_item| %>
+        <tr>
+          <td><%= shopping_item[0] %></td>
+          <td><%= shopping_item[1] %></td>
+          <td><%= "$#{shopping_item[2]}" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
