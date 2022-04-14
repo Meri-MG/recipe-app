@@ -12,6 +12,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @user = @recipe.user
     @recipe_foods = @recipe.recipe_foods
+    @inventories = current_user.inventories
   end
 
   def create
