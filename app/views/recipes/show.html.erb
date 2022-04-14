@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "modal-window", "data-turbo-track": "reload" %>
 <div class="flex justify-center my-12 container mx-auto">
   <div class="w-3/5 bg-white shadow-lg p-10">
 
@@ -28,7 +29,7 @@
     </div>
 
      <div class="flex justify-between mt-4">
-      <%= link_to "Generate shopping list", '#', class: "py-3 px-6 border-orange-500 mb-3 text-orange hover:text-white border hover:bg-orange-700", onclick: 'openAlert()' %>
+      <%= link_to "Generate shopping list", '#', class: "py-3 px-6 border-orange-500 mb-3 text-orange hover:text-white border hover:bg-orange-700", onclick: 'openModal()' %>
       <%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id), class: "py-3 px-6 bg-orange-500 mb-3 text-white hover:bg-orange-700" %>
     </div>
 
@@ -54,4 +55,22 @@
     </table>
    </div>
 </div>
-<%= javascript_include_tag "modal-window" %>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Generating Shopping List</h2>
+    <p>Choose an inventory to use</p>
+    <%=form_with url: shopping_list_path, method: :get do |f| %>
+      <div class="flex justify-between items-center">
+        <div class="border py-2 px-4">
+          <%= f.select :inventory_id, @inventories.collect { |inventory| [inventory.name, inventory.id] }, :prompt => 'Select an Inventory', class: 'focus:outline-none', required: true %>
+        </div>
+        <%= f.hidden_field :recipe_id, value: @recipe.id, required: true, class: 'border py-2 px-4 w-80' %>
+      </div>
+      <div>
+        <%= f.submit "Generate", class: 'py-3 px-8 bg-orange-500 text-white hover:bg-orange-700 cursor-pointer mt-5'%>
+      </div> 
+    <% end %>
+  </div>
+</div>
+<%= javascript_include_tag "modal-window", "data-turbo-track": "reload" %>
