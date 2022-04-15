@@ -63,7 +63,7 @@ RSpec.describe 'Foods', type: :system do
     expect(page).to have_content('$3')
   end
 
-  it 'food details page' do
+  it 'removes food' do
     visit '/users/sign_in'
     user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     fill_in 'user_email', with: 'bogdan@example.com'
