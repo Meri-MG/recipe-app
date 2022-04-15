@@ -1,10 +1,15 @@
 <div class="flex justify-center my-12 container mx-auto">
   <div class="w-4/5 bg-white shadow-lg p-10">
   <h1 class="text-2xl font-bold border-b-2">Inventory list</h1>
-
-  <div class="flex justify-end mt-4">
-    <%= button_to 'Add inventory', '/inventories/new', method: :get, class: 'py-3 px-6 bg-orange-500 mb-3 text-white hover:bg-orange-700' %>
-  </div>
+  <% if can? :create, Inventory %>
+    <div class="flex justify-end mt-4">
+      <%= button_to 'Add inventory', '/inventories/new', method: :get, class: 'py-3 px-6 bg-orange-500 mb-3 text-white hover:bg-orange-700' %>
+    </div>
+  <% else %>
+    <div class="flex justify-end mt-4">
+      <%= button_to 'Add Inventory', '#', class: "py-3 px-6 bg-orange-500 mb-3 text-white hover:bg-orange-700 opacity-50 cursor-not-allowed", disabled: true %>
+    </div>
+  <% end %>
 
     <ul class="mt-4">
       <% @inventories.each do |inventory| %>

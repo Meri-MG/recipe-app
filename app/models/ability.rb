@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
@@ -11,9 +9,7 @@ class Ability
       return
     end
 
-    if user.admin?
-      can :manage, :all
-    end
+    can :manage, :all if user.admin?
 
     can :read, Recipe, public: true
     can :manage, Recipe, user_id: user.id
@@ -21,7 +17,7 @@ class Ability
     can :manage, Inventory, user_id: user.id
     can :manage, InventoryFood, inventory: { user_id: user.id }
     can :manage, RecipeFood, recipe: { user_id: user.id }
-    
+
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
