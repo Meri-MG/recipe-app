@@ -6,10 +6,10 @@
 > ![diagram](https://github.com/microverseinc/curriculum-rails/blob/main/recipe-app/images/recipe_app_erd.png)
 
 
-> ![homePage](https://github.com/Meri-MG/recipe-app/blob/final_touches/recipe-app/apps/assets/images/homePage.png)
-> ![ListOfRecipes](https://github.com/Meri-MG/recipe-app/blob/final_touches/recipe-app/apps/assets/images/recipes.png)
-> ![RecipesDetails](https://github.com/Meri-MG/recipe-app/blob/final_touches/recipe-app/apps/assets/images/recipes_details.png)
-> ![ShoppingList](https://github.com/Meri-MG/recipe-app/blob/final_touches/recipe-app/apps/assets/images/shopping_list.png)
+> ![homePage](https://github.com/Meri-MG/recipe-app/blob/final_touches/app/assets/images/homePage.png?raw=true)
+> ![ListOfRecipes](https://github.com/Meri-MG/recipe-app/blob/final_touches/app/assets/images/recipes.png?raw=true)
+> ![RecipesDetails](https://github.com/Meri-MG/recipe-app/blob/final_touches/app/assets/images/recipes_details.png?raw=true)
+> ![ShoppingList](https://github.com/Meri-MG/recipe-app/blob/final_touches/app/assets/images/shopping_list.png?raw=true)
 ## Built With
 
 - Ruby
