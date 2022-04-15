@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe RecipeFood, type: :model do
   describe 'create recipe_food instance' do
     subject do
-      user = User.create(name: 'User')
+      user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
       food = Food.create(name: 'food', measurement_unit: 'grams', price: 10, user:)
       recipe = Recipe.create(name: 'Recipe', preparation_time: 1.0, cooking_time: 1.0, description: 'recipe steps',
                              public: true)

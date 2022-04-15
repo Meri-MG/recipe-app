@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe InventoryFood, type: :model do
   describe 'create Inventory food instance' do
     subject do
-      user = User.create(name: 'User')
+      user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
       food = Food.create(name: 'food', measurement_unit: 'grams', price: 10, user:)
       inventory = Inventory.create(name: 'Recipe', user:)
       InventoryFood.new(quantity: 10, inventory:, food:)

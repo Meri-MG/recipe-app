@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Food, type: :model do
   subject do
-    user = User.create(name: 'User')
+    user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     Food.new(user:, name: 'A post', measurement_unit: 'grams', price: 10)
   end
 
