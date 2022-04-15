@@ -80,3 +80,5 @@ group :development, :test do
 end
 
 gem 'shoulda-matchers', require: false
+
+gem 'devise'
