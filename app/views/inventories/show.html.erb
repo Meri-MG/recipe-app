@@ -19,7 +19,7 @@
             <tr class="hover:bg-gray-200 border">
               <td class="right py-3 px-5"><%= inventory_food.food.name %></td>
               <td class="right py-3 px-5"><%= "#{inventory_food.quantity} #{inventory_food.food.measurement_unit}" %></td>
-              <td><%= button_to 'REMOVE', '/inventory_foods/' + inventory_food.id.to_s, method: :delete %></td>
+              <td><%= button_to 'Remove', '/inventory_foods/' + inventory_food.id.to_s, method: :delete, class: 'text-red-400' %></td>
             </tr>
           <% end %>
         </tbody>
