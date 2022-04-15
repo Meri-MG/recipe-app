@@ -1,4 +1,4 @@
-<div class="flex justify-center my-12 container mx-auto">
+<div class="flex justify-center mt-48 mb-12 container mx-auto">
   <div class="w-3/5 bg-white shadow-lg p-10">
     <%= form_with model: @new_inventory_food, url: "/inventories/#{params[:id]}/inventory_foods" do |form| %>
       <%= form.hidden_field :inventory_id, value: params[:id] %>
