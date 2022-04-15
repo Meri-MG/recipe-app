@@ -10,7 +10,7 @@ RSpec.describe 'Recipe', type: :system do
 
     click_link 'Recipes'
 
-    expect(page).to have_content('Add new recipe')
+    expect(page).to have_content('Recipes List')
   end
 
   it 'creates a recipe' do

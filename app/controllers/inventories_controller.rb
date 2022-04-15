@@ -8,7 +8,12 @@ class InventoriesController < ApplicationController
   end
 
   def show
-    @inventory = Inventory.find(params[:id])
+    @inventory = Inventory.where(id: params[:id])[0]
+    if @inventory.nil?
+      flash[:notice] = 'Inventory doesn\'t exist!'
+      redirect_to inventories_path
+      return
+    end
     @inventory_foods = @inventory.inventory_foods.includes(:food)
   end
 
