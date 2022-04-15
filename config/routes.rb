@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   post '/inventories/:id/inventory_foods', to: 'inventory_foods#create'
   delete '/inventory_foods/:id', to: 'inventory_foods#destroy'
 
-  get '/shopping_list', to: 'shopping_list#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -19,6 +18,6 @@ Rails.application.routes.draw do
   resources :recipes do 
     resources :recipe_foods, only: %i[create destroy new]
   end
-  get '/public_recipes/', to: 'public_recipes#index'
-  get '/shopping_list/', to: 'shopping_list#index'
+  get '/public_recipes', to: 'public_recipes#index'
+  get '/shopping_list', to: 'shopping_list#index'
 end
