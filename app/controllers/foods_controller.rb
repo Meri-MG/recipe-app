@@ -17,7 +17,7 @@ class FoodsController < ApplicationController
 
     if food.save
       flash[:notice] = 'Food created successfully. 👍'
-      redirect_to foods_path(foods_path)
+      redirect_to foods_path
     else
       flash[:notice] = 'Food creation failed. Try again'
       redirect_to new_food_path
