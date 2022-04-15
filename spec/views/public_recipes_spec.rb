@@ -10,7 +10,8 @@ RSpec.describe 'PublicRecipes', type: :system do
     click_button 'Log in'
 
     recipe1 = user1.recipes.create!(name: 'Galaretka', description: 'Polish dish', preparation_time: 5, cooking_time: 6)
-    recipe2 = user2.recipes.create!(name: 'Borshch', description: 'Ukrainian dish', preparation_time: 2, cooking_time: 3)
+    recipe2 = user2.recipes.create!(name: 'Borshch', description: 'Ukrainian dish', preparation_time: 2,
+                                    cooking_time: 3)
 
     click_link 'Public Recipes'
 

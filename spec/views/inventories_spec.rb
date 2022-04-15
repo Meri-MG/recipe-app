@@ -12,7 +12,7 @@ RSpec.describe 'Inventory', type: :system do
 
     expect(page).to have_content('Inventory list')
   end
-  
+
   it 'adds inventory' do
     visit '/users/sign_in'
     User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
@@ -40,7 +40,7 @@ RSpec.describe 'Inventory', type: :system do
 
     inventory = user.inventories.create!(name: 'Inventory 1')
     food1 = user.foods.create!(name: 'pineapple', measurement_unit: 'grams', price: 3)
-    food2 = user.foods.create!(name: 'chicken', measurement_unit: 'units', price: 12)
+    user.foods.create!(name: 'chicken', measurement_unit: 'units', price: 12)
 
     click_link 'Inventories'
 
@@ -73,7 +73,7 @@ RSpec.describe 'Inventory', type: :system do
 
     inventory = user.inventories.create!(name: 'Inventory 1')
     food = user.foods.create!(name: 'pineapple', measurement_unit: 'grams', price: 3)
-    InventoryFood.create!(quantity: 50, inventory: inventory, food: food)
+    InventoryFood.create!(quantity: 50, inventory:, food:)
 
     visit "/inventories/#{inventory.id}"
 

@@ -76,8 +76,8 @@ RSpec.describe 'Foods', type: :system do
 
     click_button 'Delete'
 
-    expect(page).to_not have_content('pineapple')
-    expect(page).to_not have_content('grams')
+    expect(page).to_not have_content(food1.name)
+    expect(page).to_not have_content(food1.measurement_unit)
     expect(page).to_not have_content('$3')
   end
 end

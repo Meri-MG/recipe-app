@@ -44,7 +44,7 @@ RSpec.describe 'Recipe', type: :system do
 
     recipe = user.recipes.create!(name: 'Borshch', description: 'Ukrainian dish', preparation_time: 2, cooking_time: 3)
     food1 = user.foods.create!(name: 'pineapple', measurement_unit: 'grams', price: 3)
-    food2 = user.foods.create!(name: 'chicken', measurement_unit: 'units', price: 12)
+    user.foods.create!(name: 'chicken', measurement_unit: 'units', price: 12)
 
     click_link 'Recipes'
 
@@ -80,7 +80,7 @@ RSpec.describe 'Recipe', type: :system do
 
     recipe = user.recipes.create!(name: 'Borshch', description: 'Ukrainian dish', preparation_time: 2, cooking_time: 3)
     food = user.foods.create!(name: 'pineapple', measurement_unit: 'grams', price: 3)
-    RecipeFood.create!(quantity: 50, recipe: recipe, food: food)
+    RecipeFood.create!(quantity: 50, recipe:, food:)
 
     visit "/recipes/#{recipe.id}"
 
@@ -146,8 +146,8 @@ RSpec.describe 'Recipe', type: :system do
     recipe = user.recipes.create!(name: 'Borshch', description: 'Ukrainian dish', preparation_time: 2, cooking_time: 3)
     inventory = user.inventories.create!(name: 'Inventory 1')
     food = user.foods.create!(name: 'pineapple', measurement_unit: 'grams', price: 3)
-    recipe_food = RecipeFood.create!(quantity: 3, recipe: recipe, food: food)
-    inventory_food = InventoryFood.create!(quantity: 1, inventory: inventory, food: food)
+    RecipeFood.create!(quantity: 3, recipe:, food:)
+    InventoryFood.create!(quantity: 1, inventory:, food:)
 
     visit "/recipes/#{recipe.id}"
 
@@ -160,7 +160,7 @@ RSpec.describe 'Recipe', type: :system do
     expect(page).to have_content('$6.0')
     expect(page).to have_content("Recipe: #{recipe.name}")
     expect(page).to have_content("Inventory: #{inventory.name}")
-    expect(page).to have_content("Amount of food to buy: 1")
-    expect(page).to have_content("Total value of food needed: $6.0")
+    expect(page).to have_content('Amount of food to buy: 1')
+    expect(page).to have_content('Total value of food needed: $6.0')
   end
 end
