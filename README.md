@@ -5,6 +5,11 @@
 > The project is following data model below: 
 > ![diagram](https://github.com/microverseinc/curriculum-rails/blob/main/recipe-app/images/recipe_app_erd.png)
 
+
+> ![homePage](https://github.com/Meri-MG/recipe-app/blob/final_touches/recipe-app/apps/assets/images/homePage.png)
+> ![ListOfRecipes](https://github.com/Meri-MG/recipe-app/blob/final_touches/recipe-app/apps/assets/images/recipes.png)
+> ![RecipesDetails](https://github.com/Meri-MG/recipe-app/blob/final_touches/recipe-app/apps/assets/images/recipes_details.png)
+> ![ShoppingList](https://github.com/Meri-MG/recipe-app/blob/final_touches/recipe-app/apps/assets/images/shopping_list.png)
 ## Built With
 
 - Ruby
@@ -88,7 +93,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Thanks to my morning session partners, coding partners and teammates.
+Thanks to our morning session partners, coding partners and teammates.
 
 ## 📝 License
 
