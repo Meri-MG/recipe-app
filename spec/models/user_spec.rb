@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:inventories) }
   end
 
-  describe 'validations' do 
+  describe 'validations' do
     it 'isn\'t valid without name' do
       subject.name = ''
       expect(subject).to_not be_valid

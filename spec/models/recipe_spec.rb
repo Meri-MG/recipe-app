@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  subject { 
-    user = User.create(name: 'User')  
-    Recipe.new(user: user, name: 'recipe', preparation_time: 1.0, cooking_time: 1.0, description: 'recipe steps', public: true) 
-  }
+  subject do
+    user = User.create(name: 'User')
+    Recipe.new(user:, name: 'recipe', preparation_time: 1.0, cooking_time: 1.0, description: 'recipe steps',
+               public: true)
+  end
 
   before { subject.save }
 
@@ -18,7 +19,7 @@ RSpec.describe Recipe, type: :model do
     it { should have_many(:foods).through(:recipe_foods) }
   end
 
-  describe 'validations' do 
+  describe 'validations' do
     it 'isn\'t valid without name' do
       subject.name = ''
       expect(subject).to_not be_valid

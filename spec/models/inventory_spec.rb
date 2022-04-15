@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Inventory, type: :model do
-  subject {
+  subject do
     user = User.create(name: 'User')
-    Inventory.new(user: user, name: 'An inventory') 
-  }
+    Inventory.new(user:, name: 'An inventory')
+  end
 
   before { subject.save }
 
@@ -18,7 +18,7 @@ RSpec.describe Inventory, type: :model do
     it { should have_many(:foods).through(:inventory_foods) }
   end
 
-  describe 'validations' do 
+  describe 'validations' do
     it 'isn\'t valid without name' do
       subject.name = ''
       expect(subject).to_not be_valid
