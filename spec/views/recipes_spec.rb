@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Foods', type: :system do
+RSpec.describe 'Recipe', type: :system do
   it 'goes to recipes page' do
     visit '/users/sign_in'
     User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
@@ -13,7 +13,7 @@ RSpec.describe 'Foods', type: :system do
     expect(page).to have_content('Add new recipe')
   end
 
-  it 'goes to recipes page' do
+  it 'creates a recipe' do
     visit '/users/sign_in'
     User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     fill_in 'user_email', with: 'bogdan@example.com'
@@ -35,7 +35,7 @@ RSpec.describe 'Foods', type: :system do
     expect(page).to have_content('Ukrainian dish')
   end
 
-  it 'goes to recipes page and adds ingredients' do
+  it 'goes to recipes details and adds ingredients' do
     visit '/users/sign_in'
     user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     fill_in 'user_email', with: 'bogdan@example.com'
@@ -71,7 +71,7 @@ RSpec.describe 'Foods', type: :system do
     expect(page).to have_content("$#{50 * food1.price}")
   end
 
-  it 'goes to recipes page and removes an ingredient' do
+  it 'goes to recipe details and removes ingredient' do
     visit '/users/sign_in'
     user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     fill_in 'user_email', with: 'bogdan@example.com'
@@ -95,7 +95,7 @@ RSpec.describe 'Foods', type: :system do
     expect(page).to_not have_content("$#{50 * food.price}")
   end
 
-  it 'goes to recipes page and adds ingredients' do
+  it 'goes to recipes page and removes the recipe' do
     visit '/users/sign_in'
     user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     fill_in 'user_email', with: 'bogdan@example.com'
@@ -115,7 +115,7 @@ RSpec.describe 'Foods', type: :system do
     expect(page).to_not have_content(recipe.description)
   end
 
-  it 'goes to recipes page and removes an ingredient' do
+  it 'goes to recipe detail page toggles public checkbox and checks it is not public anymore' do
     visit '/users/sign_in'
     user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     fill_in 'user_email', with: 'bogdan@example.com'
@@ -136,7 +136,7 @@ RSpec.describe 'Foods', type: :system do
     expect(page).to_not have_content(recipe.description)
   end
 
-  it 'goes to recipes page and removes an ingredient' do
+  it 'goes to recipes page and generates shopping list' do
     visit '/users/sign_in'
     user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     fill_in 'user_email', with: 'bogdan@example.com'
