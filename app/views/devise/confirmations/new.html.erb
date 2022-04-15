@@ -7,8 +7,8 @@
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="field">
-          <%= f.label :email, class: "text-lg"  %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),  class: 'w-full border py-2 px-3 mb-4 focus:outline-orange-500' %>
+          <%= f.label :email, class: "text-lg" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'w-full border py-2 px-3 mb-4 focus:outline-orange-500' %>
         </div>
 
         <div class="actions my-2">
