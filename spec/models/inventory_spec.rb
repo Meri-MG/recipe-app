@@ -1,7 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  subject { User.new(name: 'User') }
+RSpec.describe Inventory, type: :model do
+  subject {
+    user = User.create(name: 'User')
+    Inventory.new(user: user, name: 'An inventory') 
+  }
 
   before { subject.save }
 
@@ -10,9 +13,9 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Associations' do
-    it { should have_many(:recipes) }
-    it { should have_many(:foods) }
-    it { should have_many(:inventories) }
+    it { should belong_to(:user).without_validating_presence }
+    it { should have_many(:inventory_foods) }
+    it { should have_many(:foods).through(:inventory_foods) }
   end
 
   describe 'validations' do 

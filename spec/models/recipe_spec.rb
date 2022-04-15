@@ -1,9 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  subject { Recipe.new(name: 'recipe', preparation_time: 1.0, cooking_time: 1.0, description: 'recipe steps', public: true) }
+  subject { 
+    user = User.create(name: 'User')  
+    Recipe.new(user: user, name: 'recipe', preparation_time: 1.0, cooking_time: 1.0, description: 'recipe steps', public: true) 
+  }
 
   before { subject.save }
+
+  it 'subject should be valid' do
+    expect(subject).to be_valid
+  end
 
   describe 'Associations' do
     it { should belong_to(:user).without_validating_presence }

@@ -1,9 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Food, type: :model do
-  subject { Food.new(name: 'A post', measurement_unit: 'grams', price: 10) }
+  subject {
+    user = User.create(name: 'User')
+    Food.new(user: user, name: 'A post', measurement_unit: 'grams', price: 10) 
+  }
 
   before { subject.save }
+
+  it 'subject should be valid' do
+    expect(subject).to be_valid
+  end
 
   describe 'Associations' do
     it { should belong_to(:user).without_validating_presence }
