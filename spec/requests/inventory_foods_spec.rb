@@ -10,7 +10,7 @@ RSpec.describe "InventoryFoods", type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it "POST /inventories/:id/inventory_foods" do
+    it "POST /inventories/:id/inventory_foods and DELETE /inventory_foods/:id" do
       user = User.create!(name: 'Dan')
       inventory = user.inventories.create!(name: "Inv#1")
       food = user.foods.create!(name: 'Apple', measurement_unit: 'grams', price: 321)
