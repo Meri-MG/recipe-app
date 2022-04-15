@@ -19,7 +19,7 @@ class RecipeFoodsController < ApplicationController
     recipe = recipe_food.recipe
     recipe_food.destroy
     redirect_to recipe_path(recipe)
-    flash[:success] = 'Ingredient was deleted'
+    flash[:notice] = 'Ingredient was deleted'
   end
 
   private
