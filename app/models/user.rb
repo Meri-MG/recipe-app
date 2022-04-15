@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :inventories, foreign_key: 'user_id', dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 3, maximum: 100 }
+
+  def admin?
+    role == 'admin'
+  end
 end
