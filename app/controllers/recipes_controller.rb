@@ -12,7 +12,12 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.where(id: params[:id])[0]
+    if @recipe.nil?
+      flash[:notice] = 'Recipe doesn\'t exist!'
+      redirect_to recipes_path
+      return
+    end
     @user = @recipe.user
     @recipe_foods = @recipe.recipe_foods.includes(:food)
     @inventories = if current_user.nil?

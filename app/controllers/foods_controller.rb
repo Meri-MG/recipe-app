@@ -4,7 +4,12 @@ class FoodsController < ApplicationController
   end
 
   def show
-    @food = Food.find(params[:id])
+    @food = Food.where(id: params[:id])[0]
+    if @food.nil?
+      flash[:notice] = 'This food doesn\'t exist!'
+      redirect_to foods_path
+      return
+    end
     @user = @food.user
   end
 

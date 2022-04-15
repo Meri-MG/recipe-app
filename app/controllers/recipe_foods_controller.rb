@@ -10,7 +10,8 @@ class RecipeFoodsController < ApplicationController
       flash[:notice] = 'Ingredient was added successfully.'
       redirect_to recipe_path(@recipe.id)
     else
-      render 'new', status: :unprocessable_entity
+      flash[:notice] = 'Invalid entries!'
+      redirect_to new_recipe_recipe_food_path(@recipe.id)
     end
   end
 

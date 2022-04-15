@@ -1,6 +1,6 @@
 <div class="flex justify-center mt-48 mb-12 container mx-auto">
   <div class="w-4/5 bg-white shadow-lg p-10">
-     <h1 class="text-2xl font-bold border-b-2">Add new recipe</h1>
+     <h1 class="text-2xl font-bold border-b-2">Recipes List</h1>
       <% if can? :create, Recipe %>
         <div class="flex justify-end mt-4">
           <%= link_to 'Add Recipe', new_recipe_path(@recipe), class: "py-3 px-6 bg-orange-500 mb-3 text-white hover:bg-orange-700" %>
