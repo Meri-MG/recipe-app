@@ -135,4 +135,32 @@ RSpec.describe 'Foods', type: :system do
     expect(page).to_not have_content(recipe.name)
     expect(page).to_not have_content(recipe.description)
   end
+
+  it 'goes to recipes page and removes an ingredient' do
+    visit '/users/sign_in'
+    user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
+    fill_in 'user_email', with: 'bogdan@example.com'
+    fill_in 'user_password', with: 'password'
+    click_button 'Log in'
+
+    recipe = user.recipes.create!(name: 'Borshch', description: 'Ukrainian dish', preparation_time: 2, cooking_time: 3)
+    inventory = user.inventories.create!(name: 'Inventory 1')
+    food = user.foods.create!(name: 'pineapple', measurement_unit: 'grams', price: 3)
+    recipe_food = RecipeFood.create!(quantity: 3, recipe: recipe, food: food)
+    inventory_food = InventoryFood.create!(quantity: 1, inventory: inventory, food: food)
+
+    visit "/recipes/#{recipe.id}"
+
+    click_link 'Generate shopping list'
+    find(:css, '#inventory_id').find(:option, inventory.name).select_option
+    click_button 'Generate'
+
+    expect(page).to have_content(food.name)
+    expect(page).to have_content('2.0 grams')
+    expect(page).to have_content('$6.0')
+    expect(page).to have_content("Recipe: #{recipe.name}")
+    expect(page).to have_content("Inventory: #{inventory.name}")
+    expect(page).to have_content("Amount of food to buy: 1")
+    expect(page).to have_content("Total value of food needed: $6.0")
+  end
 end
