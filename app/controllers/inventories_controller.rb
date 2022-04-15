@@ -1,6 +1,10 @@
 class InventoriesController < ApplicationController
   def index
-    @inventories = current_user.inventories
+    @inventories = if current_user.nil?
+                     []
+                   else
+                     current_user.inventories
+                   end
   end
 
   def show

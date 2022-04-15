@@ -1,6 +1,10 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = current_user.recipes
+    @recipes = if current_user.nil?
+                 []
+               else
+                 current_user.recipes
+               end
   end
 
   def new
@@ -11,7 +15,11 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @user = @recipe.user
     @recipe_foods = @recipe.recipe_foods
-    @inventories = current_user.inventories
+    @inventories = if current_user.nil?
+                     []
+                   else
+                     current_user.inventories
+                   end
   end
 
   def create

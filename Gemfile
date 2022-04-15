@@ -82,3 +82,5 @@ end
 gem 'shoulda-matchers', require: false
 
 gem 'devise'
+
+gem 'cancancan'
