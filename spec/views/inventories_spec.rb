@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Foods', type: :system do
-  it 'goes to recipes page' do
+RSpec.describe 'Inventory', type: :system do
+  it 'goes to inventories page' do
     visit '/users/sign_in'
     User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     fill_in 'user_email', with: 'bogdan@example.com'
@@ -13,7 +13,7 @@ RSpec.describe 'Foods', type: :system do
     expect(page).to have_content('Inventory list')
   end
   
-  it 'goes to recipes page' do
+  it 'adds inventory' do
     visit '/users/sign_in'
     User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     fill_in 'user_email', with: 'bogdan@example.com'
@@ -31,7 +31,7 @@ RSpec.describe 'Foods', type: :system do
     expect(page).to have_content('Inventory 1')
   end
 
-  it 'goes to recipes page and adds ingredients' do
+  it 'adds food to an inventory' do
     visit '/users/sign_in'
     user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     fill_in 'user_email', with: 'bogdan@example.com'
@@ -64,7 +64,7 @@ RSpec.describe 'Foods', type: :system do
     expect(page).to have_content(food1.measurement_unit)
   end
 
-  it 'goes to recipes page and removes an ingredient' do
+  it 'removes food from inventory' do
     visit '/users/sign_in'
     user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     fill_in 'user_email', with: 'bogdan@example.com'
@@ -86,7 +86,7 @@ RSpec.describe 'Foods', type: :system do
     expect(page).to_not have_content(food.measurement_unit)
   end
 
-  it 'goes to recipes page and adds ingredients' do
+  it 'removes inventory' do
     visit '/users/sign_in'
     user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
     fill_in 'user_email', with: 'bogdan@example.com'
