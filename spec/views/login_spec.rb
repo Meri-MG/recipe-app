@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Static content', type: :system do
+RSpec.describe 'Login', type: :system do
   it 'shows the login page' do
     visit '/users/sign_in'
     expect(page).to have_content('Log in')
