@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Pages", type: :request do
-  describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
+  it "GET /" do
+    get('/')
+    expect(response).to render_template('home')
+    expect(response).to have_http_status(:ok)
   end
 end
