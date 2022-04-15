@@ -9,8 +9,9 @@ RSpec.describe 'Foods', type: :request do
     end
 
     it 'GET /foods/:id' do
-      user = User.create!(name: 'Meri')
+      user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
       food = user.foods.create!(name: 'Apple', measurement_unit: 'grams', price: 321)
+      sign_in user
       get("/foods/#{food.id}")
       expect(response).to render_template('show')
       expect(response).to have_http_status(:ok)
@@ -23,8 +24,9 @@ RSpec.describe 'Foods', type: :request do
     end
 
     it 'DELETE /foods/:id' do
-      user = User.create!(name: 'Meri')
+      user = User.create!(name: 'Goodman', email: 'bogdan@example.com', password: 'password', confirmed_at: Time.now)
       food = user.foods.create!(name: 'Apple', measurement_unit: 'grams', price: 321)
+      sign_in user
       delete("/foods/#{food.id}")
       expect do
         get("/foods/#{food.id}")
