@@ -1,0 +1,37 @@
+<div class="flex justify-center mt-48 mb-48 container mx-auto">
+  <div class="w-4/5 bg-white shadow-lg p-10">
+    <h1 class="text-2xl font-bold border-b-2">Food List</h1>
+    <% if can? :create, Food %>
+      <div class="flex justify-end mt-4">
+        <%= link_to 'Add Food', new_food_path, class: "py-3 px-10 bg-orange-500 mb-3 text-white hover:bg-orange-700" %>
+      </div>
+    <% else %>
+      <div class="flex justify-end mt-4">
+        <%= button_to 'Add Food', new_food_path, class: "py-3 px-6 bg-orange-500 mb-3 text-white hover:bg-orange-700 opacity-50 cursor-not-allowed", disabled: true %>
+      </div>
+    <% end %>
+    <table  class="min-w-full table-auto border bg-white">
+      <thead class="bg-gray-400 text-white">
+        <tr>
+          <th class="py-3 text-left px-5 font-semibold">Food</th>
+          <th class="py-3 text-left px-5 font-semibold">Measurement unit</th>
+          <th class="py-3 text-left px-5 font-semibold">Unit price</th>
+          <th class="py-3 text-left pr-5 font-semibold" colspan="3">Action</th>
+        </tr>
+      </thead>
+        <tbody>
+          <% @foods.each do |food| %>
+            <tr class="hover:bg-gray-200 border">
+              <td class="right py-3 px-5"><%= food.name %></td>
+              <td class="right py-3 px-5"><%= food.measurement_unit %></td>
+              <td class="right py-3 px-5">$<%= food.price %></td>
+              <td><%= link_to 'Show', food_path(food), class: 'text-green-500' %></td>
+              <% if can? :destroy, Food %>
+                <td><%= button_to 'Delete', food_path(food), class: 'text-red-400', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this recipe?" }} %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="py-5 px-5 shadow-md bg-white fixed z-50 w-full top-0">
+  <div class="container mx-auto flex items-center justify-between">
+    <%= link_to "Recipe App", root_path, class: "text-2xl text-orange-500 font-bold" %>
+    <nav>
+      <ul class="flex items-center">
+        <li class="mx-3 text-lg font-semibold hover:text-orange-500">
+          <%= link_to "Foods", foods_path %>
+        </li>
+        <li class="mx-3 text-lg font-semibold hover:text-orange-500">
+          <%= link_to "Recipes", recipes_path %>
+        </li>
+        <li class="mx-3 text-lg font-semibold hover:text-orange-500">
+          <%= link_to "Public Recipes", public_recipes_path %>
+        </li>
+        <li class="mx-3 text-lg font-semibold hover:text-orange-500">
+          <%= link_to "Inventories", inventories_path %>
+        </li>
+        <% if current_user %>
+          <li class="mx-3 text-lg font-semibold hover:text-orange-500 border border-orange-500 py-2 px-4 text-orange-500">
+            <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+          </li>
+        <% else %>
+          <li class="mx-3 text-lg font-semibold hover:text-orange-500">
+            <%= link_to 'Log in', new_user_session_path, class: "nav-link active text-green-500" %>
+          </li>
+          <li class="mx-3 text-lg font-semibold hover:text-orange-500">
+            <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link text-orange-600" %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="flex justify-center mt-48 mb-48 container mx-auto">
+  <div class="w-4/5 bg-white shadow-lg p-10">
+  <h1 class="text-2xl font-bold border-b-2">Inventory list</h1>
+  <% if can? :create, Inventory %>
+    <div class="flex justify-end mt-4">
+      <%= button_to 'Add inventory', '/inventories/new', method: :get, class: 'py-3 px-6 bg-orange-500 mb-3 text-white hover:bg-orange-700' %>
+    </div>
+  <% else %>
+    <div class="flex justify-end mt-4">
+      <%= button_to 'Add Inventory', '#', class: "py-3 px-6 bg-orange-500 mb-3 text-white hover:bg-orange-700 opacity-50 cursor-not-allowed", disabled: true %>
+    </div>
+  <% end %>
+
+    <ul class="mt-4">
+      <% @inventories.each do |inventory| %>
+        <li class="border flex items-center justify-between py-3 px-4 mb-4">
+          <p>
+            <a href="<%= '/inventories/' + inventory.id.to_s %>" class="font-semibold text-xl">
+              <%= inventory.name %>
+            </a>
+          </p>
+          <%= button_to 'Remove', '/inventories/' + inventory.id.to_s, method: :delete, class: 'text-red-400 hover:text-red-300' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

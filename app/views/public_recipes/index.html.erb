@@ -1,0 +1,28 @@
+<div class="flex justify-center mt-48 mb-48 container mx-auto">
+  <div class="w-3/5 bg-white shadow-lg p-10">
+    <% if @public_recipes.empty? %>
+      <div>
+        <h1>We're sorry, no recipes are available for now!<h1>
+      </div>
+    <% else %>
+      <div>
+        <% @public_recipes.each do |public_recipe| %>
+          <% sum = 0 %>
+          <%= link_to recipe_path(public_recipe.id) do %>
+            <div class="shadow-md border p-3 flex hover:bg-gray-200 mb-6">
+              <div class="w-1/3">
+                <h1 class="text-xl font-semibold"><%= public_recipe.name %></h1>
+                <p class="text-gray-600 mt-2"><%= "By: #{public_recipe.user.name}" %></p>
+              </div>
+              <div  class="w-2/3">
+                <p class="text-gray-600 font-semibold"><%= "Total food items: #{public_recipe.recipe_foods.count}" %></p>
+                <% public_recipe.recipe_foods.each {|food| sum += food.quantity * food.food.price} %>
+                <p class="text-gray-600 mt-2 font-semibold"><span><%= "Total Price $#{sum}" %></span></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+   </div>
+</div>
