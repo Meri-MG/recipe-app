@@ -71,7 +71,7 @@
 
 .main {
   min-height: 600px;
-  margin: 0px auto;
+  margin: 0 auto;
   width: auto;
   max-width: 460px;
   display: flex;
@@ -86,7 +86,6 @@
 }
 
 @keyframes dash {
-
   0%,
   30% {
     fill: rgb(75, 75, 98);
