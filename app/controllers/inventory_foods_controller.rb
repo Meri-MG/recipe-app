@@ -1,3 +1,5 @@
+# rubocop:disable Lint/RescueException
+
 class InventoryFoodsController < ApplicationController
   def new
     @new_inventory_food = InventoryFood.new
@@ -14,6 +16,9 @@ class InventoryFoodsController < ApplicationController
         format.html { redirect_to "/inventories/#{params[:id]}/inventory_foods/new" }
       end
     end
+  rescue Exception => e
+    flash[:notice] = e.message
+    redirect_to not_found_path
   end
 
   def destroy
@@ -22,6 +27,9 @@ class InventoryFoodsController < ApplicationController
     inventory_food.destroy
     flash[:notice] = 'Inventory food was successfully removed'
     redirect_to "/inventories/#{inventory.id}"
+  rescue Exception => e
+    flash[:notice] = e.message
+    redirect_to not_found_path
   end
 
   private
@@ -30,3 +38,5 @@ class InventoryFoodsController < ApplicationController
     params.require(:inventory_food).permit(:inventory_id, :food_id, :quantity)
   end
 end
+
+# rubocop:enable Lint/RescueException

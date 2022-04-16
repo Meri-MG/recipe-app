@@ -1,3 +1,5 @@
+# rubocop:disable Lint/RescueException
+
 class RecipeFoodsController < ApplicationController
   def new
     @foods = Food.all
@@ -13,6 +15,9 @@ class RecipeFoodsController < ApplicationController
       flash[:notice] = 'Invalid entries!'
       redirect_to new_recipe_recipe_food_path(@recipe.id)
     end
+  rescue Exception => e
+    flash[:notice] = e.message
+    redirect_to not_found_path
   end
 
   def destroy
@@ -21,6 +26,9 @@ class RecipeFoodsController < ApplicationController
     recipe_food.destroy
     redirect_to recipe_path(recipe)
     flash[:notice] = 'Ingredient was deleted'
+  rescue Exception => e
+    flash[:notice] = e.message
+    redirect_to not_found_path
   end
 
   private
@@ -29,3 +37,5 @@ class RecipeFoodsController < ApplicationController
     params.require(:recipe_food).permit(:food_id, :quantity)
   end
 end
+
+# rubocop:enable Lint/RescueException

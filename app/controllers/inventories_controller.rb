@@ -1,3 +1,5 @@
+# rubocop:disable Lint/RescueException
+
 class InventoriesController < ApplicationController
   def index
     @inventories = if current_user.nil?
@@ -8,13 +10,11 @@ class InventoriesController < ApplicationController
   end
 
   def show
-    @inventory = Inventory.where(id: params[:id])[0]
-    if @inventory.nil?
-      flash[:notice] = 'Inventory doesn\'t exist!'
-      redirect_to inventories_path
-      return
-    end
+    @inventory = Inventory.find(params[:id])
     @inventory_foods = @inventory.inventory_foods.includes(:food)
+  rescue Exception => e
+    flash[:notice] = e.message
+    redirect_to not_found_path
   end
 
   def destroy
@@ -23,6 +23,9 @@ class InventoriesController < ApplicationController
     splitted_path = request.path.split('/')
     splitted_path.pop
     redirect_to splitted_path.join('/')
+  rescue Exception => e
+    flash[:notice] = e.message
+    redirect_to not_found_path
   end
 
   def new
@@ -40,5 +43,10 @@ class InventoriesController < ApplicationController
         format.html { redirect_to '/inventories/new' }
       end
     end
+  rescue Exception => e
+    flash[:notice] = e.message
+    redirect_to not_found_path
   end
 end
+
+# rubocop:enable Lint/RescueException
