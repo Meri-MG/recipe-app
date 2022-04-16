@@ -4,12 +4,12 @@
 }
 
 .pao-baixo {
-  animation: rotatepao 14s cubic-bezier(.1, .49, .41, .97) infinite;
+  animation: rotatepao 14s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
   transform-origin: center;
 }
 
 .pao-cima {
-  animation: rotatepao 7s 1s cubic-bezier(.1, .49, .41, .97) infinite;
+  animation: rotatepao 7s 1s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
   transform-origin: center;
 }
 
@@ -26,11 +26,6 @@
 .right-sparks {
   animation: left-sparks 4s alternate infinite;
   transform-origin: 310px 150px;
-}
-
-.olhos {
-  animation: olhos 2s alternate infinite;
-  transform-origin: center;
 }
 
 @keyframes scales {
