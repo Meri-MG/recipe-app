@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   end
   get '/public_recipes', to: 'public_recipes#index'
   get '/shopping_list', to: 'shopping_list#index'
+  get '/not_found', to: 'pages#not_found'
 end
