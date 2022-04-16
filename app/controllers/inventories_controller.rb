@@ -8,21 +8,26 @@ class InventoriesController < ApplicationController
   end
 
   def show
-    @inventory = Inventory.where(id: params[:id])[0]
-    if @inventory.nil?
+    begin
+      @inventory = Inventory.find(params[:id])
+      @inventory_foods = @inventory.inventory_foods.includes(:food)
+    rescue
       flash[:notice] = 'Inventory doesn\'t exist!'
-      redirect_to inventories_path
-      return
+      redirect_to not_found_path
     end
-    @inventory_foods = @inventory.inventory_foods.includes(:food)
   end
 
   def destroy
-    current_user.inventories.find(params[:id]).destroy
-    flash[:notice] = 'Inventory was successfully removed'
-    splitted_path = request.path.split('/')
-    splitted_path.pop
-    redirect_to splitted_path.join('/')
+    begin
+      current_user.inventories.find(params[:id]).destroy
+      flash[:notice] = 'Inventory was successfully removed'
+      splitted_path = request.path.split('/')
+      splitted_path.pop
+      redirect_to splitted_path.join('/')
+    rescue Exception => e
+      flash[:notice] = e.message
+      redirect_to not_found_path
+    end
   end
 
   def new
@@ -30,15 +35,20 @@ class InventoriesController < ApplicationController
   end
 
   def create
-    inventory = Inventory.new(user: current_user, name: params[:inventory][:name])
-    respond_to do |format|
-      if inventory.save
-        flash[:notice] = 'Created an inventory succesfully'
-        format.html { redirect_to '/inventories' }
-      else
-        flash[:notice] = 'Failed to create an inventory. Try again'
-        format.html { redirect_to '/inventories/new' }
+    begin
+      inventory = Inventory.new(user: current_user, name: params[:inventory][:name])
+      respond_to do |format|
+        if inventory.save
+          flash[:notice] = 'Created an inventory succesfully'
+          format.html { redirect_to '/inventories' }
+        else
+          flash[:notice] = 'Failed to create an inventory. Try again'
+          format.html { redirect_to '/inventories/new' }
+        end
       end
+    rescue Exception => e
+      flash[:notice] = e.message
+      redirect_to not_found_path
     end
   end
 end

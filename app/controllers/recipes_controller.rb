@@ -12,42 +12,57 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.where(id: params[:id])[0]
-    if @recipe.nil?
+    begin
+      @recipe = Recipe.find(params[:id])
+      @user = @recipe.user
+      @recipe_foods = @recipe.recipe_foods.includes(:food)
+      @inventories = if current_user.nil?
+                        []
+                      else
+                        current_user.inventories
+                      end
+    rescue Exception => e
       flash[:notice] = 'Recipe doesn\'t exist!'
-      redirect_to recipes_path
-      return
+      redirect_to not_found_path
     end
-    @user = @recipe.user
-    @recipe_foods = @recipe.recipe_foods.includes(:food)
-    @inventories = if current_user.nil?
-                     []
-                   else
-                     current_user.inventories
-                   end
   end
 
   def create
-    @recipe = current_user.recipes.new(recipe_params)
-    if @recipe.save
-      flash[:notice] = 'Recipe was created successfully.'
-      redirect_to recipes_path
-    else
-      render 'new', status: :unprocessable_entity
+    begin
+      @recipe = current_user.recipes.new(recipe_params)
+      if @recipe.save
+        flash[:notice] = 'Recipe was created successfully.'
+        redirect_to recipes_path
+      else
+        render 'new', status: :unprocessable_entity
+      end
+    rescue Exception => e
+      flash[:notice] = e.message
+      redirect_to not_found_path
     end
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
-    @recipe.destroy
-    flash[:notice] = 'Recipe was deleted successfully.'
-    redirect_to recipes_path
+    begin
+      @recipe = Recipe.find(params[:id])
+      @recipe.destroy
+      flash[:notice] = 'Recipe was deleted successfully.'
+      redirect_to recipes_path
+    rescue Exception => e
+      flash[:notice] = e.message
+      redirect_to not_found_path
+    end
   end
 
   def update
-    @recipe = Recipe.find_by(id: params[:id])
-    public = params[:public] == '1'
-    @recipe.update_attribute(:public, public)
+    begin
+      @recipe = Recipe.find_by(id: params[:id])
+      public = params[:public] == '1'
+      @recipe.update_attribute(:public, public)
+    rescue Exception => e
+      flash[:notice] = e.message
+      redirect_to not_found_path
+    end
   end
 
   private
